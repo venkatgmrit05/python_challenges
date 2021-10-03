@@ -7,19 +7,11 @@ Created on Wed Sep 29 20:06:46 2021
 
 
 import pandas as pd
-# import numpy as np
 
 # importing data
 data_file = r'.\data_cleaning_challenge.csv'
 
 df_data = pd.read_csv(data_file)
-
-
-
-# splitter = ',,,,,,,,,,\
-# ,,,,,,,,,,'
-
-
 splitter = ',,,,,,,,,,\n,,,,,,,,,,'
 
 with open(data_file,'r') as file:
@@ -28,18 +20,16 @@ with open(data_file,'r') as file:
 # splitting data  
 data_txt_tokens =   data_txt.split(splitter)
 
-#the following code will be looped over each token in data_txt_tokens
+
 #for a single piece of repeating data 
 #re-organizing data into meaningful/structured shape
 
 list_dfs = []
 for original_token in data_txt_tokens[:]:
     # original_token = data_txt_tokens[0]
+    #the following code will be looped over each token in data_txt_tokens
     splitter2 = ',,,,,,,,\n'
-    # original_token.split(splitter2)
     token_label,*_,token = original_token.split(splitter2)
-    # token = data_txt_tokens[0]
-    
     token_lines = token.split('\n')
     token_row_dict = {}
     token_dict = {}
@@ -65,13 +55,9 @@ for original_token in data_txt_tokens[:]:
     data_labels = [item.split(':') for item in data_labels]
     data_labels = [item for item in data_labels if len(item) == 2]
     data_labels = {k:v for k,v in data_labels}
-    # for item in data_labels:
-    #     if item:
-    #         k,v =item,data_labels[item]
     
     for key in data_labels:
         df2[key]= data_labels[key]
-    # df2['Row Type'] = df2.index
     
     list_dfs.append(df2)
     
@@ -89,12 +75,7 @@ for _df in list_dfs_indexed:
     list_cleaned_dfs.append(_df)
 
 dff = pd.DataFrame()
-for _df in list_cleaned_dfs:
-    dff = dff.append(_df)
-    
-# dff.reset_index(drop = True,
-#             inplace = True)
-
+dff = dff.append(list_cleaned_dfs)
 df_final = dff.copy()
 
 # =============================================================================
