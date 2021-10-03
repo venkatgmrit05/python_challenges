@@ -7,10 +7,10 @@ Created on Wed Sep 29 20:06:46 2021
 
 
 import pandas as pd
-import numpy as np
+# import numpy as np
 
 # importing data
-data_file = r'D:/BrowserDownloads/data_cleaning_challenge.csv'
+data_file = r'.\data_cleaning_challenge.csv'
 
 df_data = pd.read_csv(data_file)
 
@@ -95,7 +95,7 @@ for _df in list_cleaned_dfs:
 # dff.reset_index(drop = True,
 #             inplace = True)
 
-
+df_final = dff.copy()
 
 # =============================================================================
 # validation  that no data is incorrectly left out.
@@ -117,5 +117,5 @@ df_data3.reset_index(drop= True,
 
 
 # =============================================================================
-# condition_of_no_data_loss = dff.shape[0] == df_data3.shape(0)
+# condition_of_no_data_loss = dff.shape[0] == df_final.shape(0)
 # =============================================================================
