@@ -12,7 +12,7 @@ import pandas as pd
 data_file = r'.\data_cleaning_challenge.csv'
 
 df_data = pd.read_csv(data_file)
-splitter = ',,,,,,,,,,\n,,,,,,,,,,'
+splitter = ',,,,,,,,,,\n,,,,,,,,,,' #based on a quick observation of the data
 
 with open(data_file,'r') as file:
     data_txt = file.read()
