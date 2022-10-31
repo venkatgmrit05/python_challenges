@@ -9,6 +9,17 @@ For example, given s = abcdefg and lst = ["bc", "ef"], return the string a<b>bc<
 Given s = abcdefg and lst = ["bcd", "def"], return the string a<b>bcdef</b>g, since they overlap.
 """
 
+def in_sequence(a,b):
+    in_sequence = None
+    if len(b)>len(a):
+        a,b=b,a
+
+    len_b = len(b)
+    if a[-len_b:] == b:
+        in_sequence = True
+    else:
+        in_sequence = False
+    return in_sequence
 
 def combine_str(a, b, on_common=True):
 
