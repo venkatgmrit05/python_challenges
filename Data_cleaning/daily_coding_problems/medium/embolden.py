@@ -10,13 +10,6 @@ Given s = abcdefg and lst = ["bcd", "def"], return the string a<b>bcdef</b>g, si
 """
 
 
-# def embolden(s, lst):
-
-
-#     ret = "a<b>bcdef</b>g"
-#     ret = None
-#     return ret
-
 def combine_str(a, b, on_common=True):
 
     aletters = [i for i in a]
@@ -97,6 +90,42 @@ def combine_list0(lst: list, unqiue_str=[]):
     print(nlst)
 
 
+def combine_list(lst: list):
+    comb = []
+    # l2 = lst.copy()
+
+    while len(lst) != 0:
+        ret = lst.pop(0)
+        for nitem in lst:
+            cret, _ = combine_str(ret, nitem)
+            if cret is not None:
+                ret = cret
+                # a = ret
+                lst.remove(nitem)
+                lst.insert(0, ret)
+        if ret not in comb:
+            comb.append(ret)
+    print(comb)
+
+    return comb
+
+
+def embolden(s, lst):
+
+    delim1 = '<b>'
+    delim2 = '</b>'
+
+    substr = []
+    lst = combine_list(lst)
+    for i in lst:
+        toks = s.split(i)
+        istr = f"{delim1}{i}{delim2}"
+        substr.append(istr)
+        ns = istr.join(toks)
+        s = ns
+    return s
+
+
 if __name__ == "__main__":  # pragma: no cover
     test_params = {
         1: {
@@ -125,7 +154,7 @@ if __name__ == "__main__":  # pragma: no cover
     # run_test(embolden, test_params)
 
     lst = ["ab", "c", "cd", "de"]
-
+    lst = ["a", "c", "cd", "bde"]
     combine_list(lst)
 
     # lst = ["ab", "bc", "cd", "de"]
@@ -155,3 +184,55 @@ if __name__ == "__main__":  # pragma: no cover
     #         print(lst)
     # else:
     #     break
+
+    # # method 3
+    # lst = ["ab", "ab", "cde", "fc"]
+
+    # comb = []
+    # # l2 = lst.copy()
+
+    # while len(lst) != 0:
+    #     a = lst.pop(0)
+    #     ret = a
+    #     for nitem in lst:
+    #         # print(a)
+    #         cret, _ = combine_str(a, nitem)
+    #         if cret is not None:
+
+    #             ret = cret
+    #             a = ret
+    #             lst.remove(nitem)
+    #             lst.insert(0, a)
+    #     if a not in comb:
+    #         comb.append(a)
+    #     print('\t', ret)
+    # print(comb)
+
+    # s = "abcdefg"
+    # lst = ["bc", "ef"]
+
+    # # s = "abcdefg"
+    # # lst = ["bcd", "def"]
+
+    # # s = "abcdefg"
+    # # lst = ["bcde", "def"]
+
+    # delim1 = '<b>'
+    # delim2 = '</b>'
+    # # delim1 = '_'
+    # # delim2 = '_'
+
+    # substr = []
+    # lst = combine_list(lst)
+    # for i in lst:
+    #     # print('\n')
+    #     # print(s)
+    #     # print(i)
+    #     toks = s.split(i)
+    #     # print(toks)
+    #     istr = f"{delim1}{i}{delim2}"
+    #     substr.append(istr)
+    #     # print(istr)
+    #     ns = istr.join(toks)
+    #     print(ns)
+    #     s = ns
