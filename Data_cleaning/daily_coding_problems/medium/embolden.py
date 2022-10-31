@@ -35,7 +35,7 @@ def combine_str(a, b, on_common=True):
     return combined_str, common_substr
 
 
-def combine_list(lst: list, unqiue_str=[]):
+def combine_list1(lst: list, unqiue_str=[]):
 
     num_items = len(lst)
     print('\n')
@@ -92,7 +92,6 @@ def combine_list0(lst: list, unqiue_str=[]):
 
 def combine_list(lst: list):
     comb = []
-    # l2 = lst.copy()
 
     while len(lst) != 0:
         ret = lst.pop(0)
@@ -100,12 +99,10 @@ def combine_list(lst: list):
             cret, _ = combine_str(ret, nitem)
             if cret is not None:
                 ret = cret
-                # a = ret
                 lst.remove(nitem)
                 lst.insert(0, ret)
         if ret not in comb:
             comb.append(ret)
-    print(comb)
 
     return comb
 
@@ -133,7 +130,6 @@ if __name__ == "__main__":  # pragma: no cover
     # lst = ["a", "c", "cd", "bde"]
     # combine_list(lst)
 
-
     # test
     test_params = {
         1: {
@@ -160,6 +156,3 @@ if __name__ == "__main__":  # pragma: no cover
                 'output'], f"output doesnt match. actual  is {out} \n required is {test_params[_test]['output']}"
 
     run_test(embolden, test_params)
-
-
-
