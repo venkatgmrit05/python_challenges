@@ -12,5 +12,7 @@ def pangrams(s):
     return 'not pangram'
 
 
-a = 'We promptly judged antique ivory buckles for the next prize'
-print(pangrams(a))
+if __name__ == '__main__':
+
+    a = 'We promptly judged antique ivory buckles for the next prize'
+    print(pangrams(a))
