@@ -9,17 +9,20 @@ For example, given s = abcdefg and lst = ["bc", "ef"], return the string a<b>bc<
 Given s = abcdefg and lst = ["bcd", "def"], return the string a<b>bcdef</b>g, since they overlap.
 """
 
-def in_sequence(a,b):
+
+def in_sequence(a, b):
     in_sequence = None
-    if len(b)>len(a):
-        a,b=b,a
+    if len(b) > len(a):
+        a, b = b, a
 
     len_b = len(b)
-    if a[-len_b:] == b:
+    # if a[-len_b:] == b:
+    if a[-len_b] == b[0]:
         in_sequence = True
     else:
         in_sequence = False
     return in_sequence
+
 
 def combine_str(a, b, on_common=True):
 
@@ -32,73 +35,20 @@ def combine_str(a, b, on_common=True):
     short_lst = bletters
 
     common = [i for i in short_lst if i in long_lst]
+    common_substr = ''.join(common)
+    if common_substr:
 
-    if common:
-        common_substr = ''.join(common)
-        combined_str = ''.join(longw).replace(common_substr, shortw)
+        abin_sequence = in_sequence(a, common_substr)
+        if abin_sequence:
+            combined_str = ''.join(longw).replace(common_substr, shortw)
+        else:
+            combined_str = None
     else:
-        common_substr = None
         if on_common:  # combine only if common substr exists
-
             combined_str = None
         else:
             combined_str = a+b
     return combined_str, common_substr
-
-
-def combine_list1(lst: list, unqiue_str=[]):
-
-    num_items = len(lst)
-    print('\n')
-    print(lst)
-    i = 0
-    while i < num_items-1:
-        print(f'combining item {i}')
-        firstw = lst.pop(i)
-        print(firstw)
-        count = 0
-        for nextw in lst:
-            print('\t', nextw)
-            count = +1
-            if count < 100:
-                ret, common_substr = combine_str(firstw, nextw)
-
-                if common_substr is not None:
-                    print('\t\t', ret, common_substr)
-                    lst.remove(nextw)
-                    lst.insert(0, ret)
-                    nlst = lst.copy()
-                    print('\t\t\t', nlst)
-                    unqiue_str.append(nextw)
-                    unqiue_str.append(ret)
-                    return combine_list(nlst, unqiue_str)
-
-        # unqiue_str.append(firstw)
-        i += 1
-
-    print("final:", lst)
-    print("unique:", unqiue_str)
-
-    # else:
-    #     unqiue_str.append
-
-
-def combine_list0(lst: list, unqiue_str=[]):
-    nlst = []
-    for i in range(len(lst)-1):
-        print(lst)
-        a, b = lst[i], lst[i+1]
-        if len(a) < len(b):
-            a, b = b, a
-
-        if a[:-len(b)] == b[:len(b)]:
-            nlst.append(combine_str(a, b)[0])
-            # return combine_list(nlst, unqiue_str)
-            print(nlst)
-        else:
-            nlst.append(a)
-            print(nlst)
-    print(nlst)
 
 
 def combine_list(lst: list):
@@ -131,6 +81,7 @@ def embolden(s, lst):
         substr.append(istr)
         ns = istr.join(toks)
         s = ns
+        print(s)
     return s
 
 
@@ -139,7 +90,12 @@ if __name__ == "__main__":  # pragma: no cover
     # # dev
     # lst = ["ab", "c", "cd", "de"]
     # lst = ["a", "c", "cd", "bde"]
-    # combine_list(lst)
+    lst = ["bc", "def", "fc"]
+    print(combine_list(lst))
+
+    # s = "abcdeffc"
+    # lst = ["bc", "def", "fc"]
+    # embolden(s, lst)
 
     # test
     test_params = {
@@ -156,6 +112,13 @@ if __name__ == "__main__":  # pragma: no cover
                 "lst": ["bcd", "def"],
             },
             "output": "a<b>bcdef</b>g"
+        },
+        3: {
+            "inputs": {
+                "s": "abcdeffc",
+                "lst": ["bc", "def", "fc"],
+            },
+            "output": "a<b>bc</b><b>def</b><b>fc</b>"
         }
     }
 
@@ -166,4 +129,4 @@ if __name__ == "__main__":  # pragma: no cover
             assert out == test_params[_test][
                 'output'], f"output doesnt match. actual  is {out} \n required is {test_params[_test]['output']}"
 
-    run_test(embolden, test_params)
+    #run_test(embolden, test_params)
