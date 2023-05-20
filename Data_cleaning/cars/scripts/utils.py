@@ -22,3 +22,10 @@ def get_market(x, market_mapping_dict):
     except Exception as e:
         print(f'err: {e}')
         return 0
+
+
+def convert_currency(
+        currency: float,
+        from_to: tuple,
+        exchange_map: dict):
+    return exchange_map[from_to]*currency
