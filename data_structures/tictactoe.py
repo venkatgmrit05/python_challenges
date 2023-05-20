@@ -125,19 +125,16 @@ if __name__ == '__main__':
             else:
                 player = players[1]
 
-            user_input = input("enter grid num")
+            user_input = input(f"enter grid num {player} : ")
             board_values = replace_with(
                 board_values, int(user_input),
                 player_sym[f"player{players.index(player)}"],
-                # 'X'
             )
             board = get_board(board_values)
             board_str = get_board_repr(board)
-
             winner = get_winner(board)
             print('\n\n')
             print(board_str)
-            print(f'winner: {winner}')
             if winner:
                 print(f'winner: {player}')
                 break
