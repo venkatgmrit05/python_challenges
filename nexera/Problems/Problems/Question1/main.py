@@ -134,11 +134,3 @@ def get_piston_result(input):
 
 if __name__ == "__main__":
     main()
-
-    # fp = r'D:\Data\OfficeWorkspace-20191016T044923Z-001\OfficeWorkspace'\
-    #     r'\python_challenges\nexera\Problems\Problems\Question1\probem_inputs.csv'
-
-    # all_inputs = get_inputs_csv(fp)
-
-    # for i, inp in enumerate(all_inputs):
-    #     print(i, ' ::: ', inp)
