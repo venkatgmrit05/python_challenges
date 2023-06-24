@@ -41,7 +41,7 @@ def get_user_input():
 
     all_inputs = get_inputs_csv(fp)
 
-    i = 9
+    i = 6
     ins = all_inputs[i]
 
     input.material = materials[ins[0].upper()]

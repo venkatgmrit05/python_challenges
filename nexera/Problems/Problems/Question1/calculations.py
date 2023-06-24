@@ -43,5 +43,6 @@ def get_weight(mass):
 
 def get_upward_force_on_piston(p1, p2):
     # delta_p = p1-p2  # org XXX
-    delta_p = abs(p1-p2)  # TODO XXX check which of these is right
+    # delta_p = abs(p1-p2)  # TODO XXX check which of these is right
+    delta_p = p2-p1
     return AREA_OF_PISTON * delta_p
