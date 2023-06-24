@@ -1,6 +1,7 @@
 from constants import *
 from user_input import UserInput
 from calculations import *
+import os
 
 
 def get_inputs_csv(fp):
@@ -15,6 +16,8 @@ def get_inputs_csv(fp):
         # print('\t\t', j)
         all_inputs.append(j)
     return all_inputs
+
+#
 
 
 def get_user_input():
@@ -36,8 +39,9 @@ def get_user_input():
 
     input = UserInput()
 
-    fp = r'D:\Data\OfficeWorkspace-20191016T044923Z-001\OfficeWorkspace'\
-        r'\python_challenges\nexera\Problems\Problems\Question1\probem_inputs.csv'
+    # fp = r'D:\Data\OfficeWorkspace-20191016T044923Z-001\OfficeWorkspace'\
+    #     r'\python_challenges\nexera\Problems\Problems\Question1\probem_inputs.csv'
+    fp = os.path.join(os.path.dirname(__file__), 'probem_inputs.csv')
 
     all_inputs = get_inputs_csv(fp)
 
@@ -71,7 +75,7 @@ def main():
     print(f"Piston predicted to move: {answer}")
 
 
-def get_user_input0():
+def get_user_input0():  # TODO remove the 0 and the code reverts to using original definition # noqa
     input = UserInput()
 
     ret = input.get_material()
@@ -134,3 +138,12 @@ def get_piston_result(input):
 
 if __name__ == "__main__":
     main()
+
+    # Notes: I added a couple of methods to help with easier debugging.
+    # remvove the '_' at the end of the method get_user_input0() in line 76
+    # to revert to original form of the code.
+
+    # Notes:  I am fairly certain the rows 8 and 9[index 6 and 7] Q1 excel
+    # may be incorrect in their defintion  of whether the piston should go up or down
+    # I have also included a quick cross checker jupyter notebook.
+    # my code predicts it should go up for index 6 and down for index 7
