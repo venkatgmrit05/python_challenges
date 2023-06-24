@@ -1,7 +1,6 @@
 from input_checker import *
 from constants import *
 
-
 class UserInput():
     def __init__(self):
         self.material = None
@@ -20,18 +19,19 @@ class UserInput():
         print("3 - Stainless Steel")
         print("4 - Polystyrene")
         print()
-
+        
         try:
             material = int(input())
-        except:
+        except: 
             return False
-
+        
         if is_valid_material(material):
             self.material = material
             return True
-
+        
         self.material = None
         return False
+    
 
     def get_shape(self):
         print()
@@ -44,15 +44,16 @@ class UserInput():
 
         try:
             shape = int(input())
-        except:
+        except: 
             return False
-
+        
         if is_valid_shape(shape):
-            self.shape = shape
+            self.shape = shape       
             return True
-
+        
         self.shape = None
         return False
+
 
     def get_radius(self):
         print()
@@ -60,17 +61,17 @@ class UserInput():
         print()
 
         try:
-            # radius = int(input())org XXX
-            radius = float(input())
-        except:
+            radius = int(input())
+        except: 
             return False
-
+        
         if is_valid_dimension(radius):
             self.radius = radius
             return True
-
+        
         self.radius = None
         return False
+    
 
     def get_height(self):
         print()
@@ -78,16 +79,17 @@ class UserInput():
         print()
 
         try:
-            height = float(input())
-        except:
+            height = float(input()) 
+        except: 
             return False
-
+        
         if is_valid_dimension(height):
             self.height = height
             return True
-
+        
         self.height = None
         return False
+
 
     def get_p1(self):
         print()
@@ -95,12 +97,13 @@ class UserInput():
         print()
 
         try:
-            p1 = float(input())
-        except:
+            p1 = float(input()) 
+        except: 
             return False
-
+        
         self.p1 = p1
         return True
+    
 
     def get_p2(self):
         print()
@@ -109,8 +112,10 @@ class UserInput():
 
         try:
             p2 = float(input())
-        except:
+        except: 
             return False
-
+        
         self.p2 = p2
         return True
+
+        
