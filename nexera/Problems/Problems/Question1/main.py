@@ -4,6 +4,7 @@ from calculations import *
 import os
 
 
+# XXX :comments: methods for debugging
 def get_inputs_csv(fp):
 
     all_inputs = []
@@ -20,7 +21,7 @@ def get_inputs_csv(fp):
 #
 
 
-def get_user_input():
+def get_user_input_():
 
     materials = {
         'OAK': 0,
@@ -66,6 +67,7 @@ def get_user_input():
 
 def main():
     input = get_user_input()
+    # input = get_user_input_()  # XXX :comments: use for debugging
 
     if input == None:
         print("Exiting application")
@@ -75,7 +77,7 @@ def main():
     print(f"Piston predicted to move: {answer}")
 
 
-def get_user_input0():  # TODO remove the 0 and the code reverts to using original definition # noqa
+def get_user_input():
     input = UserInput()
 
     ret = input.get_material()
@@ -123,7 +125,8 @@ def get_piston_result(input):
     print('p2::', input.p2)
 
     volume_of_item = get_volume(input)
-    # mass_of_item = get_mass(input.shape, volume_of_item)  # XXX
+    # mass_of_item = get_mass(input.shape, volume_of_item)
+    # # XXX replaced incorrect arguments
     mass_of_item = get_mass(input.material, volume_of_item)
     weight_of_item = get_weight(mass_of_item)
     upwward_force_on_piston = get_upward_force_on_piston(input.p1, input.p2)
@@ -139,11 +142,14 @@ def get_piston_result(input):
 if __name__ == "__main__":
     main()
 
+    # I have placed XXX notations at places of corrected code and comments.
+
     # Notes: I added a couple of methods to help with easier debugging.
     # remvove the '_' at the end of the method get_user_input0() in line 76
     # to revert to original form of the code.
 
     # Notes:  I am fairly certain the rows 8 and 9[index 6 and 7] Q1 excel
-    # may be incorrect in their defintion  of whether the piston should go up or down
+    # may be incorrect in their defintion
+    # of whether the piston should go up or down
     # I have also included a quick cross checker jupyter notebook.
     # my code predicts it should go up for index 6 and down for index 7

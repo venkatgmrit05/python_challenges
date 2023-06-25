@@ -39,6 +39,7 @@ def get_weight(mass):
 
 
 def get_upward_force_on_piston(p1, p2):
+    # XXX checked incorrect definition for upward force
     # given the diagram, i think this should be the calculation of
     # the upward force on the disc
     # the object[target] itself pulls downwards.
